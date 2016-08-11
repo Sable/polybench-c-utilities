@@ -391,17 +391,17 @@ void polybench_timer_print()
       if  (polybench_program_total_flops == 0)
 	{
 	  printf ("[PolyBench][WARNING] Program flops not defined, use polybench_set_program_flops(value)\n");
-	  printf ("%0.6lf\n", polybench_t_end - polybench_t_start);
+	  printf ("{ \"gflops\": %0.6lf }\n", polybench_t_end - polybench_t_start);
 	}
       else
-	printf ("%0.2lf\n",
+	printf ("{ \"gflops\": %0.2lf }\n",
 		(polybench_program_total_flops /
 		 (double)(polybench_t_end - polybench_t_start)) / 1000000000);
 #else
 # ifndef POLYBENCH_CYCLE_ACCURATE_TIMER
-      printf ("%0.6f\n", polybench_t_end - polybench_t_start);
+      printf ("{ \"time\": %0.6f }\n", polybench_t_end - polybench_t_start);
 # else
-      printf ("%Ld\n", polybench_c_end - polybench_c_start);
+      printf ("{ \"time\": %Ld }\n", polybench_c_end - polybench_c_start);
 # endif
 #endif
 }
